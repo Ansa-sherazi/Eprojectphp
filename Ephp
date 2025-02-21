@@ -1,0 +1,100 @@
+create database Shopping_cart;
+use shopping_cart;
+-- Create the table "product"
+CREATE TABLE stationary (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Image TEXT NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+
+-- Sample inserts for stationery products
+INSERT INTO product (Name, Image) VALUES 
+('Ballpoint Pen', 'https://tse2.mm.bing.net/th?id=OIP.-H2lqHQmzdMVrKTc_U8V3QHaHa&pid=Api'),
+('Spiral Notebook', 'https://tse4.mm.bing.net/th?id=OIP.qYu5vUrIiAb7Dp6EbKzvMgHaHa&pid=Api'),
+('Sticky Notes', 'https://tse4.mm.bing.net/th?id=OIP.CxQ-ts8ESgHMmLKdJwhLbwHaFj&pid=Api'),
+('Highlighter Markers', 'https://tse2.mm.bing.net/th?id=OIP.7z3oyp4yByzetiozGQqdrgHaJK&pid=Api'),
+('Paper Clips', 'https://tse1.mm.bing.net/th?id=OIP.dYiQ79EnB8jb0ziHI9OpiQHaHa&pid=Api'),
+('Stapler', 'https://tse3.mm.bing.net/th?id=OIP.u0bpKDavp8zsWaQhlq1VVwHaHa&pid=Api'),
+('Correction Tape', 'https://tse1.mm.bing.net/th?id=OIP.3j-VEMEb2Si6kU1ZyBRqWgHaHa&pid=Api'),
+('Binder Clips', 'https://tse3.mm.bing.net/th?id=OIP.2E3eExuzDQnEgYkolxvGIAHaHa&pid=Api'),
+('Pencil Sharpener', 'https://tse1.mm.bing.net/th?id=OIP.t42HDv2TWPYpvYvBtkawwQHaHa&pid=Api'),
+('Eraser', 'https://tse2.mm.bing.net/th?id=OIP.jkgruTWLERD7WFZhVcoKKwHaE_&pid=Api');
+
+-- Create the table "product"
+CREATE TABLE Cards (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Image TEXT NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+-- Sample inserts for greeting cards
+INSERT INTO Cards (Name, Image) VALUES 
+('Floral Birthday Greeting Card', 'https://tse4.mm.bing.net/th?id=OIP.dWRcTi0gbf5aKWW4z58xZwHaHa&pid=Api'),
+('Thank You Card with Watercolor Design', 'https://tse2.mm.bing.net/th?id=OIP.2HbI28zupVL7_Dwyj1TlOAHaHa&pid=Api'),
+('Holiday Season Greeting Card', 'https://tse2.mm.bing.net/th?id=OIP.BG0jDJ3kUXOHXDN4-0d4kQHaHF&pid=Api'),
+('Romantic Anniversary Card', 'https://tse1.mm.bing.net/th?id=OIP._Jg91y0fumaVgSfqM454lQHaHa&pid=Api'),
+('Congratulations Graduate Card', 'https://tse2.mm.bing.net/th?id=OIP.xliJ-IwOuL_10ccqU7ZQmgHaD8&pid=Api');
+
+-- Create the table "dolls"
+CREATE TABLE dolls (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Image TEXT NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+-- Sample inserts for dolls
+INSERT INTO dolls (Name, Image) VALUES 
+('Barbie Doll', 'https://tse2.mm.bing.net/th?id=OIP.LDhUZbOpUfO84wx5Qc_FZwHaKY&pid=Api'),
+('Barbie Doll with White Cap', 'https://tse4.mm.bing.net/th?id=OIP.8E4dB4AFbXNUezbdJ6eY1wHaEK&pid=Api'),
+('Rag Doll', 'https://tse1.mm.bing.net/th?id=OIP.r2ZxSlZmXo7NPrq82fUe2QHaEJ&pid=Api'),
+('Adora Doll', 'https://tse3.mm.bing.net/th?id=OIP.Dpxfspq41LzouAATqH67rgHaKz&pid=Api'),
+('Adora Baby Doll - Happy Birthday Edition', 'https://tse3.mm.bing.net/th?id=OIP.y3xcne6aWLwu18QQhjIR5QHaHa&pid=Api');
+
+-- Create the table "wallets"
+CREATE TABLE wallets (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Image TEXT NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+-- Sample inserts for wallets
+INSERT INTO wallets (Name, Image) VALUES 
+('Trifold Leather Wallet', 'https://tse1.mm.bing.net/th?id=OIP.qiFLg9oDfPGLuhrv4C6obAHaJs&pid=Api'),
+('Slim Bifold Wallet', 'https://tse1.mm.bing.net/th?id=OIP.2XddWOTUC_E54PDOQ18i5QHaHN&pid=Api'),
+('Luxury Black Leather Wallet', 'https://tse3.mm.bing.net/th?id=OIP.ThXy5bGX82Q1KLQPqb-08gHaHa&pid=Api'),
+('Minimalist Leather Wallet', 'https://tse4.mm.bing.net/th?id=OIP.yAJMMRvKRnV7m2_6Z_6vIgHaHa&pid=Api'),
+('Genuine Leather Trifold Wallet', 'https://tse3.mm.bing.net/th?id=OIP.ya7ZX-VWdwekI0Lby12s8gHaJR&pid=Api');
+
+create table products (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL,
+    Image TEXT NOT NULL
+    );
+    
+    CREATE TABLE products (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Category VARCHAR(50) NOT NULL,
+    Name VARCHAR(255) NOT NULL,
+    Image TEXT NOT NULL,
+    PRIMARY KEY (Id)
+);
+
+-- Insert all products into "products" table using INNER JOIN
+INSERT INTO products (Category, Name, Image)
+SELECT 'Stationary', s.Name, s.Image FROM stationary s
+INNER JOIN stationary ON s.Id = stationary.Id
+UNION ALL
+SELECT 'Cards', c.Name, c.Image FROM Cards c
+INNER JOIN Cards ON c.Id = Cards.Id
+UNION ALL
+SELECT 'Dolls', d.Name, d.Image FROM dolls d
+INNER JOIN dolls ON d.Id = dolls.Id
+UNION ALL
+SELECT 'Wallets', w.Name, w.Image FROM wallets w
+INNER JOIN wallets ON w.Id = wallets.Id;
+Select * from wallets;
