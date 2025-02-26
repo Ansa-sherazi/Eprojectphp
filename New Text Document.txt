@@ -1,0 +1,64 @@
+Agar aapki website par different types of users hain — jaise sellers, buyers, aur admins — to aapko unke liye alag-alag forms ki zaroorat nahi hogi. Aap ek hi form bana sakte hain jo role-based ho, matlab ek hi signup/login form rahe, lekin jab user signup ya login kare, to uska role determine kiya jaa sake (jaise seller, buyer, admin).
+
+1. Signup/Login Process (Ek Form Ke Saath)
+Aap ek single form bana sakte hain, jisme user apna basic information provide karega, jaise name, email, password, etc. Aur role ka option bhi de sakte hain.
+
+Example:
+
+Signup Form:
+Name
+Email
+Password
+Confirm Password
+Role (Dropdown: Seller, Buyer, Admin)
+Ya aap user ko signup karte waqt role select karne ka option de sakte hain, ya phir default role set kar sakte hain (for example, by default user buyer ho).
+
+2. Login Process
+Jab user login kare, to aapko login credentials ke saath uske role ko bhi check karna hoga, taki aap usse corresponding page par redirect kar sakein.
+
+Login Form:
+Email
+Password
+After login, check the role of the user from the database and redirect to respective dashboard (Seller Dashboard, Admin Dashboard, etc.)
+3. Role-based Redirection:
+For Signup:
+Jab user signup kare, to uska role bhi database mein store ho.
+Agar user seller hai, to usse seller dashboard pe redirect kiya jaayega.
+Agar user admin hai, to usse admin panel pe redirect kiya jaayega.
+For Login:
+Jab user login kare, to aapko role check karna hoga (jo aapne user ke record mein store kiya hai) aur uske hisaab se dashboard ya page show karna hoga.
+php
+Copy
+// Example after login
+if($user['role'] == 'admin') {
+    header("Location: admin_dashboard.php");
+} elseif($user['role'] == 'seller') {
+    header("Location: seller_dashboard.php");
+} else {
+    header("Location: buyer_dashboard.php");
+}
+4. Database Structure:
+Aapko user ke role ko store karne ke liye apne users table mein ek column add karna padega jisme role (admin, seller, buyer) ka value ho.
+
+Example:
+
+users table:
+id
+name
+email
+password
+role (admin/seller/buyer)
+5. Admin Panel and Seller Dashboard:
+Admin: Admin ka apna alag panel hoga jahan wo website ka control rakhega (products ko manage karna, users ko manage karna, etc.).
+Seller: Seller ka apna dashboard hoga jahan wo apne products ko manage karega (add new products, edit products, etc.).
+Buyer: Buyers ko shopping experience diya jaayega, unko cart, checkout, order history, etc. ka access hoga.
+6. How to Implement This:
+Signup Form: Aap ek form bana sakte hain jisme user ko role select karne ka option mile, ya phir admin ke liye ek default value set kar sakte hain.
+Login Form: Ek hi login form ho sakta hai, lekin login ke baad aapko user ki role ke basis par usse relevant dashboard par redirect karna hoga.
+Conclusion:
+Aap ek single signup/login form use kar sakte hain, jisme role specify karne ka option ho. Fir uske baad aap role ke basis par user ko appropriate dashboard (Admin, Seller, Buyer) par redirect kar sakte hain. Isse website ka maintenance bhi asaan ho jayega, aur code ka structure bhi simple rahega.
+
+Agar aapko kisi step mein assistance chahiye, to main aapko code examples bhi de sakta hoon.
+
+
+
